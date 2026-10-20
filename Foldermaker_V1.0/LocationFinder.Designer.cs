@@ -139,6 +139,7 @@
             // 
             // LocationFinder
             // 
+            this.AcceptButton = this.BTN_Next;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 317);
@@ -150,6 +151,7 @@
             this.Controls.Add(this.TB_destination);
             this.Name = "LocationFinder";
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.LocationFinder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NUD_FolderAmount)).EndInit();

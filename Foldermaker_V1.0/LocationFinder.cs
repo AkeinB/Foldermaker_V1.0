@@ -15,7 +15,8 @@ namespace Foldermaker_V1._0
     public partial class LocationFinder : MaterialSkin.Controls.MaterialForm
     {
         public string folderPath = null;
-       
+        public int folderAmount = 0;
+
         FolderBrowserDialog folder;
         public LocationFinder()
         {
@@ -48,9 +49,10 @@ namespace Foldermaker_V1._0
         {
             try
             {
-                int folderAmount = (int)NUD_FolderAmount.Value;
+                folderAmount = (int)NUD_FolderAmount.Value;
 
-                if (folderPath == null)
+                // Check if the folder path is null or empty then prevent the user from proceeding to the next form
+                if (string.IsNullOrEmpty(folderPath))
                 {
                     MessageBox.Show("Please select a folder location first.");
                     return;
@@ -69,12 +71,22 @@ namespace Foldermaker_V1._0
 
         private void BTN_FindLocation_Click(object sender, EventArgs e)
         {
-            DialogResult result = folder.ShowDialog();
-            if (result == DialogResult.OK)
+            try
             {
-                folderPath = folder.SelectedPath;
-                TB_destination.Text = folderPath;
+                // Open the folder browser dialog and get the selected folder path
+                DialogResult result = folder.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    folderPath = folder.SelectedPath;
+                    TB_destination.Text = folderPath;
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
         }
 
         private void LocationFinder_Load(object sender, EventArgs e)
