@@ -81,6 +81,7 @@
             this.BTN_Cancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.BTN_Cancel.UseAccentColor = false;
             this.BTN_Cancel.UseVisualStyleBackColor = true;
+            this.BTN_Cancel.Click += new System.EventHandler(this.BTN_Cancel_Click);
             // 
             // materialLabel1
             // 

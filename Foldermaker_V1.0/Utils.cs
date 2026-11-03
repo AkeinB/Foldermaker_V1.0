@@ -21,6 +21,12 @@ namespace Foldermaker_V1._0
                     Accent.LightBlue200, TextShade.WHITE);
         }
 
-        
+        public static bool FormIsOpen(string name)
+        {
+            //check if window is already open
+            var openForms = Application.OpenForms.Cast<Form>();
+            var isOpen = openForms.Any(q => q.Name == name);
+            return isOpen;
+        }
     }
 }

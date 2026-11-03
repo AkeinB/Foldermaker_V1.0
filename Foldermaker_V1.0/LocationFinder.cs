@@ -16,17 +16,27 @@ namespace Foldermaker_V1._0
     {
         public string folderPath = null;
         public int folderAmount = 0;
+        private readonly FolderNaming _folderNaming;
 
         FolderBrowserDialog folder;
+        public LocationFinder(FolderNaming folderNaming)
+        {
+            InitializeComponent();
+            folder = new FolderBrowserDialog();
+            this.FormClosing += new FormClosingEventHandler(LocationFinder_FormClosing);
+            _folderNaming = folderNaming;
+            Utils.ApplyMaterialSkin(this);
+  
+        }
+
         public LocationFinder()
         {
             InitializeComponent();
             folder = new FolderBrowserDialog();
-
             Utils.ApplyMaterialSkin(this);
-  
+
         }
-        public static void LocationFinder_FormClosing(object sender, FormClosingEventArgs e)
+        public void LocationFinder_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Function to close the application when the user clicks the close button,
             //with a confirmation dialog
@@ -41,7 +51,18 @@ namespace Foldermaker_V1._0
             }
             else
             {
+                if (_folderNaming != null && !_folderNaming.IsDisposed)
+                    _folderNaming.Close();
 
+               
+                //close all other open forms when the main window is closed
+                foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+                {
+                    if (form != this)
+                        form.Close();
+                }
+
+               
             }
         }
 
